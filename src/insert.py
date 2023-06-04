@@ -27,7 +27,7 @@ def create_milvus_collection(collection_name, dim):
 
 
 if __name__ == "__main__":
-    df = pd.read_csv('../data/raw/question_answer.csv')
+    df = pd.read_csv('../data/question_answer.csv')
     id_answer = df.set_index('id')['answer'].to_dict()
 
     connections.connect(host='127.0.0.1', port='19530')
@@ -42,7 +42,7 @@ if __name__ == "__main__":
             .output()
     )
 
-    with open('../data/raw/question_answer.csv', encoding='utf-8') as f:
+    with open('../data/question_answer.csv', encoding='utf-8') as f:
         reader = csv.reader(f)
         next(reader)
         for row in reader:

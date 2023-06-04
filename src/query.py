@@ -5,7 +5,7 @@ import numpy as np
 from towhee.datacollection import DataCollection
 import csv
 
-if __name__ == "__main__":
+def ann_search(question):
     connections.connect(host='127.0.0.1', port='19530')
 
     df = pd.read_csv('../data/raw/question_answer.csv')
@@ -22,8 +22,6 @@ if __name__ == "__main__":
             .output('question', 'answer')
     )
 
-    ans = ans_pipe('Is  Disability  Insurance  Required  By  Law?')
+    ans = ans_pipe(question)
     ans = DataCollection(ans)
-    print('result:')
-    print('question', ans[0]['question'])
-    print('answer', ans[0]['answer'])
+    return ans[0]['answer']
